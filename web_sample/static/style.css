@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 800px;
+    max-height: 1200px;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    height: 600px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.message {
+    margin-bottom: 15px;
+}
+
+.user-message {
+    color: blue;
+}
+
+.ai-message {
+    color: green;
+}
+
+.ai-message.thinking {
+    font-style: italic;
+    color: #a5a599;
+    /* “正在思考...”的颜色 */
+}
+
+/* .ai-message code {
+    background-color: #f4f4f9;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.ai-message pre {
+    background-color: #f4f4f9;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+} */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f9;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    width: 15%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #007bff;
+    color: white;
+}
