@@ -1,20 +1,26 @@
 import openai
 import markdown
 from flask import Flask, render_template, request, jsonify
-
-"""
-author: FHT
-这里用的是我自己的openai-api-key
-github保护机制不允许上传
-所以运行的时候要把下面这行注释取消，并换成群里的key
-"""
-# openai.api_key = "your-key"
+from db.db_utils import query_database
+from config import OPENAI_API_KEY
 
 # 创建 Flask 应用
 app = Flask(__name__)
 
+PROMPT = """
+你是一款课业管理助手（名叫ChatOBE，帮助用户管理选课信息、作业、成绩等内容。
+你面向的用户可能是学生，也可能是老师，用户不同时你的功能会有一定的差异。
+请用专业且友好的语气回答用户的问题。
+请牢记这些内容，记住你的功能和任务。
+"""
+
 # 存储对话历史
-conversation_history = []
+conversation_history = [
+    {
+        "role": "system",
+        "content": PROMPT,
+    }
+]
 
 
 # 创建函数与 OpenAI API 进行交互
@@ -24,7 +30,7 @@ def get_ai_response(user_input):
 
     # 与 OpenAI API 交互，传递整个对话历史
     response = openai.chat.completions.create(
-        model="gpt-4o", messages=conversation_history  # 使用 gpt-3.5-turbo 模型
+        model="gpt-3.5-turbo", messages=conversation_history  # 使用 gpt-3.5-turbo 模型
     )
 
     # 获取 AI 回复并将其添加到历史中
@@ -41,7 +47,7 @@ def get_ai_response(user_input):
 # 首页
 @app.route("/")
 def index():
-    WELCOME_MSG = "欢迎使用chatOBE~ \n 我是结合了大语言模型的OBE系统，可以帮你进行选课、查询等等。需要我帮你做些什么？"
+    WELCOME_MSG = "欢迎使用ChatOBE~ \n 我是结合了大语言模型的OBE系统，可以帮你进行选课、查询等等。需要我帮你做些什么？"
     return render_template("index.html", initial_message=WELCOME_MSG)
 
 
