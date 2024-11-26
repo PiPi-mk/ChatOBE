@@ -1,5 +1,6 @@
 draft/
 
+__pycache__/
 
 *.pptx
 *.ppt
